@@ -1,47 +1,69 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import 'react-native-gesture-handler';
+import React, { useState, useEffect } from 'react';
+import { View, StatusBar } from 'react-native';
+import LoginScreen from './components/LoginScreen';
+import SignInLogIn from './components/SignInLogIn';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import SideBar from './components/SideBar';
 
-export default class App extends React.Component {
+const Stack = createStackNavigator();
 
-  state = {
-    name: ''
-  }
+const App = () => {
 
-  fetching = async () => {
-    try {
-      let res = await (await fetch('https://localhost:3000/')).json();
-      console.log(res);
-      this.setState({
-        name: res
-      })
-    }catch (error){
-      console.log(error);
-    } 
-  }
+  //const [name, setName] = useState('');
+  const [isOver, setIsOver] = useState(false);
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Test it out</Text>
-        <Button
-          onPress={this.fetching}
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-        <Text>{this.state.name}</Text>
-        <StatusBar style="auto" />
+
+  /* useEffect(() => {
+    const timeouthandle = setTimeout(() => {
+      setIsOver(true);
+    }, 2000);
+    return cleanupTimer = (timeouthandle) => {
+      clearTimeout(timeoutHandle);
+    }
+  }) */
+
+  return (
+    <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="SignInLogIn"
+              component={SignInLogIn}
+            />
+            <Stack.Screen
+              name="SideBar"
+              component={SideBar}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
       </View>
-    );
-  }
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    /* (isOver ?
+       :
+      <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="SignInLogIn"
+              component={SignInLogIn}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="SideBar"
+              component={SideBar}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+      //<LoginScreen />
+    ))
+} */
+export default App;
