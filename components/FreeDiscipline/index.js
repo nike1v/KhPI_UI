@@ -1,9 +1,10 @@
 import React from 'react';
+import { Text } from 'react-native-elements';
 
 export default () => {
     return (
         <>
-            123
+            <Text>1233</Text>
         </>
     )
 }

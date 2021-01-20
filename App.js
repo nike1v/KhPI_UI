@@ -6,6 +6,7 @@ import SignInLogIn from './components/SignInLogIn';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SideBar from './components/SideBar';
+import DrawerBar from './components/DrawerBar';
 
 const Stack = createStackNavigator();
 
@@ -26,44 +27,50 @@ const App = () => {
 
   return (
     <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="SignInLogIn"
-              component={SignInLogIn}
-            />
-            <Stack.Screen
-              name="SideBar"
-              component={SideBar}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="SignInLogIn"
+            component={SignInLogIn}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="SideBar"
+            component={SideBar}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </View>
   )
 }
-    /* (isOver ?
-       :
-      <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="SignInLogIn"
-              component={SignInLogIn}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="SideBar"
-              component={SideBar}
-              options={{
-                headerShown: false,
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
-      //<LoginScreen />
-    ))
+/* (isOver ?
+   :
+  <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="SignInLogIn"
+          component={SignInLogIn}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SideBar"
+          component={SideBar}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  </View>
+  //<LoginScreen />
+))
 } */
 export default App;

@@ -3,6 +3,7 @@ import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 import Header from '../Header';
 import { v4 } from 'uuid';
+import DrawerBar from '../DrawerBar';
 
 export default () => {
 
@@ -61,6 +62,7 @@ export default () => {
 
     return (
         <View>
+            {/* <DrawerBar /> */}
             <Header
                 pageName="Student Book"
             />
