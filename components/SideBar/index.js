@@ -14,12 +14,14 @@ const SideBar = () => {
     return (
 
         <Tab.Navigator
-            lazy={true}
             initialRouteName="News"
             tabBarOptions={{
                 showLabel:false,
             }}
             barStyle={{ backgroundColor: '#ffffff' }}
+            screenOptions={{
+                
+            }}
         >
             <Tab.Screen
                 name="News"
@@ -115,11 +117,7 @@ const SideBar = () => {
             <Tab.Screen
                 name="FreeDiscipline"
                 children={() => <FreeDiscipline />}
-                tabBarOptions={{
-                    style:{
-                        position: 'fixed'
-                    }
-                }}
+                
             />
         </Tab.Navigator>
     )

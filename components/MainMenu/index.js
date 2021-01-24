@@ -1,19 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { Text, Avatar } from 'react-native-elements';
 
 export default (props) => {
 
+    const [isDirectory, setIsDirectory] = useState(false);
 
+    const SubMenu = () => {
+        return (
+            <View>
+            <TouchableOpacity
+                style={{
+                    width: '100%',
+                    marginLeft: 26,
+                    marginTop: 5,
+                }}
+            >
+                <Text
+                    style={{
+                        fontSize: 16,
+                    }}
+                >Map</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{
+                    width: '100%',
+                    marginLeft: 26,
+                    marginTop: 5,
+                }}
+            >
+                <Text
+                    style={{
+                        fontSize: 16,
+                    }}
+                >Additional points</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{
+                    width: '100%',
+                    marginLeft: 26,
+                    marginTop: 5,
+                }}
+            >
+                <Text
+                    style={{
+                        fontSize: 16,
+                    }}
+                >Contacts</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{
+                    width: '100%',
+                    marginLeft: 26,
+                    marginTop: 5,
+                }}
+            >
+                <Text
+                    style={{
+                        fontSize: 16,
+                    }}
+                >Suggestions for improvement</Text>
+            </TouchableOpacity>
+            </View>
+        )
+    }
     return (
-        <View
-        /* style={{
-            zIndex: 100,
-            position:'absolute',
-            left: 0,
-            top: 50,
-        }} */
-        >
+        <View>
             <Avatar
                 rounded
                 size={110}
@@ -30,6 +82,7 @@ export default (props) => {
             <Text
                 style={{
                     borderBottomWidth: 1,
+                    borderBottomColor: 'rgba(0, 0, 0, 0.12)',
                     paddingBottom: 10,
                     paddingLeft: 16,
                     fontSize: 24,
@@ -74,7 +127,7 @@ export default (props) => {
                         marginLeft: 16,
                         marginTop: 5,
                     }}
-                    onPress={() => (props.navigation.navigate('FreeDiscipline'))}
+                    onPress={() => setIsDirectory(!isDirectory)}
                 >
                     <Text
                         style={{
@@ -82,13 +135,11 @@ export default (props) => {
                         }}
                     >Directory</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => {
-                        props.navigation.closeDrawer();
-                    }}
-                >
-                    <Text> Close </Text>
-                </TouchableOpacity>
+                {isDirectory ?
+                    <SubMenu /> :
+                    <>
+                    </>
+                }
             </View>
         </View>
     )

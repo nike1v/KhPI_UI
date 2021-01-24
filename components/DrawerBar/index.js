@@ -1,11 +1,8 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainMenu from '../MainMenu';
-import FreeDiscipline from '../FreeDiscipline';
 import SideBar from '../SideBar';
 import { NavigationContainer } from '@react-navigation/native';
-import Application from '../Application';
-import StackNav from '../StackNavigator';
 
 const Drawer = createDrawerNavigator();
 

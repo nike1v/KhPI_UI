@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, TouchableOpacity } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { Text } from 'react-native-elements';
 import Header from '../Header';
 import { v4 } from 'uuid';
@@ -9,6 +9,8 @@ export default () => {
     const [isLoading, setIsLoading] = useState(false);
     const [subjRes, setSubjRes] = useState();
     const [semestr, setSemestr] = useState('6');
+
+    const windowWidth = Dimensions.get('window').width;
 
     const fetching = async (semestr) => {
         setSemestr(semestr);
@@ -43,21 +45,96 @@ export default () => {
     }, [semestr])
 
     const renderMarks = () => {
-        if (subjRes !== undefined) {
-            return (subjRes.map((studentMarks) => {
-                console.log('studentMarks', studentMarks);
-                return (
-                    <ScrollView key={v4()}>
-                        <Text>{studentMarks.subject}</Text>
-                        <Text>{studentMarks.markEcts}</Text>
-                    </ScrollView>
-                )
-            }))
+        return (
+            <>
+                {isLoading ?
+                    <Text>Loading!</Text> :
+                    subjRes.map((studentMarks) => {
+                        return (
+                            <View
+                                key={v4()}
+                                keyboardShouldPersistTaps="always"
+                                style={{
+                                    width: windowWidth,
+                                    flex: 1,
+                                }}
+                            >
+                                <View
+                                    style={{
+                                        height: 100,
+                                        backgroundColor: 'rgba(90,77,220,1)',
+                                        margin: 10,
+                                        borderRadius: 10,
+                                    }}
+                                >
+                                    <View
+                                        style={{
+                                            flex: 1,
+                                            flexDirection: 'row',
+                                            marginLeft: 20,
+                                            marginRight: 20,
+                                            marginTop: 10,
+                                        }}
+                                    >
+                                        <Text
+                                            style={{
+                                                color: 'rgba(255,255,255,1)',
+                                                position: 'fixed',
 
-        } else {
-            return <Text>Loading!</Text>
-        }
+                                            }}
+                                        >{studentMarks.kafedraShort}</Text>
+                                        <Text
+                                            style={{
+                                                color: 'rgba(255,255,255,1)',
+                                            }}
+                                        >{studentMarks.teacher}</Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                            flex: 1,
+                                            flexDirection: 'row',
+                                            marginLeft: 20,
+                                            marginRight: 20,
+                                        }}
+                                    >
+                                        <Text
+                                            style={{
+                                                color: 'rgba(255,255,255,1)'
+                                            }}
+                                        >{studentMarks.subject}</Text>
+                                    </View>
+                                    <View
+                                        style={{
+                                            flex: 1,
+                                            flexDirection: 'row',
+                                            marginLeft: 20,
+                                            marginRight: 20,
+                                        }}
+                                    >
+                                        <Text
+                                            style={{
+                                                color: 'rgba(255,255,255,1)'
+                                            }}
+                                        >НАЦ {studentMarks.markInt}</Text>
+                                        <Text
+                                            style={{
+                                                color: 'rgba(255,255,255,1)'
+                                            }}
+                                        >БАЛ {studentMarks.markBigInt}</Text>
+                                        <Text
+                                            style={{
+                                                color: 'rgba(255,255,255,1)'
+                                            }}
+                                        >ECTS {studentMarks.markEcts}</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        )
+                    })}
+            </>
+        )
     }
+
 
     return (
         <View>
@@ -68,51 +145,111 @@ export default () => {
                 horizontal={true}
                 keyboardShouldPersistTaps="always"
                 style={{
-                    marginLeft: 15,
+                    width: windowWidth,
+                    borderBottomWidth: 1,
+                    borderBottomColor: 'rgba(0, 0, 0, 0.12)',
+                    paddingBottom: 10,
                 }}
             >
                 <TouchableOpacity
                     onPress={() => fetching(1)}
+                    style={{
+                        width: windowWidth / 5,
+                    }}
                 >
-                    <Text>Course 1</Text>
+                    <Text
+                        style={{
+                            padding: 5,
+                            textAlign: 'center'
+                        }}
+                    >Course 1</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => fetching(3)}
+                    style={{
+                        width: windowWidth / 5,
+                    }}
                 >
-                    <Text>Course 2</Text>
+                    <Text
+                        style={{
+                            padding: 5,
+                            textAlign: 'center'
+                        }}
+                    >Course 2</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => fetching(5)}
+                    style={{
+                        width: windowWidth / 5,
+                    }}
                 >
-                    <Text>Course 3</Text>
+                    <Text
+                        style={{
+                            padding: 5,
+                            textAlign: 'center'
+                        }}
+                    >Course 3</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => fetching(7)}
+                    style={{
+                        width: windowWidth / 5,
+                    }}
                 >
-                    <Text>Course 4</Text>
+                    <Text
+                        style={{
+                            padding: 5,
+                            textAlign: 'center'
+                        }}
+                    >Course 4</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => fetching(9)}
+                    style={{
+                        width: windowWidth / 5,
+                    }}
                 >
-                    <Text>Course 5</Text>
+                    <Text
+                        style={{
+                            padding: 5,
+                            textAlign: 'center'
+                        }}
+                    >Course 5</Text>
                 </TouchableOpacity>
             </ScrollView>
             <ScrollView
                 horizontal={true}
                 keyboardShouldPersistTaps="always"
                 style={{
-                    marginLeft: 15,
+                    width: windowWidth,
+                    paddingTop: 5,
                 }}
             >
                 <TouchableOpacity
-                    onPress={() => console.log('1')}
+                    onPress={() => fetching(semestr)}
+                    style={{
+                        width: windowWidth / 2,
+                    }}
                 >
-                    <Text>First semester</Text>
+                    <Text
+                        style={{
+                            padding: 5,
+                            textAlign: 'center'
+                        }}
+                    >First semester</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => console.log("2")}
+                    onPress={() => fetching(semestr + 1)}
+                    style={{
+                        width: windowWidth / 2,
+                    }}
                 >
-                    <Text>Second semeseter</Text>
+                    <Text
+                        style={{
+                            padding: 5,
+                            textAlign: 'center'
+                        }}
+                    >Second semeseter</Text>
                 </TouchableOpacity>
             </ScrollView>
             <View
@@ -120,9 +257,12 @@ export default () => {
                     marginTop: 10,
                     marginBottom: 10,
                     borderBottomWidth: 1,
+                    widht: windowWidth,
                 }}
             />
-            {renderMarks()}
+            <ScrollView>
+                {renderMarks()}
+            </ScrollView>
         </View>
     )
 }
