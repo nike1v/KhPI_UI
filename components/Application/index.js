@@ -11,9 +11,9 @@ export default () => {
                 zIndex: 2
             }}>
                 <Header
-                    pageName="News"
+                    pageName="Application"
                 />
-                <Text>Hello News!</Text>
+                <Text>Hello Application!</Text>
             </View>
         </>
     )

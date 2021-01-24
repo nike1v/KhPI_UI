@@ -2,17 +2,21 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainMenu from '../MainMenu';
 import FreeDiscipline from '../FreeDiscipline';
+import SideBar from '../SideBar';
+import { NavigationContainer } from '@react-navigation/native';
+import Application from '../Application';
+import StackNav from '../StackNavigator';
 
 const Drawer = createDrawerNavigator();
 
-const DrawerBar = () => {
+const DrawerBar = (props) => {
+
   return (
-    <>
-      <Drawer.Navigator>
-        <Drawer.Screen name="Menu" component={MainMenu} />
-        <Drawer.Screen name="FreeDiscipline" component={FreeDiscipline} />
+    <NavigationContainer>
+      <Drawer.Navigator drawerContent={props => <MainMenu {...props} userName="Mykyta Vlasov" />}>
+        <Drawer.Screen name="Home" component={SideBar} />
       </Drawer.Navigator>
-    </>
+    </NavigationContainer>
   )
 }
 export default DrawerBar;

@@ -4,7 +4,6 @@ import { Button, Input, Text } from 'react-native-elements';
 
 const SignInLogIn = (props) => {
 
-    //const [isSignedIn, setIsSignedIn] = useState(false);
     const [isRegistering, setIsRegistering] = useState(false);
 
     const styles = StyleSheet.create({
@@ -66,7 +65,7 @@ const SignInLogIn = (props) => {
                     title="SIGN IN"
                     type='solid'
                     style={styles.singInButton}
-                    onPress={() => props.navigation.navigate('SideBar')}
+                    onPress={() => props.setAuthorised(true)}
                 />
                 <Text style={{ color: 'gray', textAlign: 'center', margin: 23 }}
                     onPress={() => Linking.openURL('http://google.com')}>
@@ -119,7 +118,7 @@ const SignInLogIn = (props) => {
                 <Button
                     title="REGISTER NOW"
                     type='solid'
-                    onPress={() => props.navigation.navigate('SideBar')}
+                    onPress={() => props.setAuthorised(true)}
                 />
             </>
         )
