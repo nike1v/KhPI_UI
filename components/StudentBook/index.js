@@ -6,11 +6,12 @@ import { v4 } from 'uuid';
 
 export default () => {
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [subjRes, setSubjRes] = useState();
     const [semestr, setSemestr] = useState('6');
 
     const windowWidth = Dimensions.get('window').width;
+    const windowHeight = Dimensions.get('window').height;
 
     const fetching = async (semestr) => {
         setSemestr(semestr);
@@ -18,7 +19,7 @@ export default () => {
             setIsLoading(true);
             const res = await (await fetch(`http://schedule.kpi.kharkov.ua/JSON/kabinet?email=dgygurdenok@gmail.com&pass=4NaqEf&page=2&semestr=${semestr}`)).json();
             setSubjRes(res.map((el) => ({
-                subj_id: el.subj_id,
+                subjId: el.subj_id,
                 subject: el.subject,
                 teacher: el.prepod,
                 kafedra: el.kafedra,
@@ -48,8 +49,18 @@ export default () => {
         return (
             <>
                 {isLoading ?
-                    <Text>Loading!</Text> :
+                    <Text
+                        style={{
+                            width: windowWidth,
+                            height: windowHeight/2,
+                            flex: 1,
+                            textAlign: 'center',
+                            textAlignVertical: 'center',
+                            fontSize: 26,
+                        }}
+                    >Loading!</Text> :
                     subjRes.map((studentMarks) => {
+                        console.log(studentMarks);
                         return (
                             <View
                                 key={v4()}
@@ -79,13 +90,26 @@ export default () => {
                                         <Text
                                             style={{
                                                 color: 'rgba(255,255,255,1)',
-                                                position: 'fixed',
+                                                flex: 1,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
 
                                             }}
                                         >{studentMarks.kafedraShort}</Text>
+                                        <View
+                                            style={{
+                                                flex: 1,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                            }}
+                                        ></View>
                                         <Text
                                             style={{
                                                 color: 'rgba(255,255,255,1)',
+                                                flex: 1,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                textAlign: 'right',
                                             }}
                                         >{studentMarks.teacher}</Text>
                                     </View>
@@ -99,7 +123,10 @@ export default () => {
                                     >
                                         <Text
                                             style={{
-                                                color: 'rgba(255,255,255,1)'
+                                                color: 'rgba(255,255,255,1)',
+                                                flex: 1,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
                                             }}
                                         >{studentMarks.subject}</Text>
                                     </View>
@@ -107,23 +134,35 @@ export default () => {
                                         style={{
                                             flex: 1,
                                             flexDirection: 'row',
+                                            justifyContent: 'space-between',
                                             marginLeft: 20,
                                             marginRight: 20,
                                         }}
                                     >
                                         <Text
                                             style={{
-                                                color: 'rgba(255,255,255,1)'
+                                                color: 'rgba(255,255,255,1)',
+                                                flex: 1,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
                                             }}
                                         >НАЦ {studentMarks.markInt}</Text>
                                         <Text
                                             style={{
-                                                color: 'rgba(255,255,255,1)'
+                                                color: 'rgba(255,255,255,1)',
+                                                flex: 1,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                textAlign: 'center'
                                             }}
                                         >БАЛ {studentMarks.markBigInt}</Text>
                                         <Text
                                             style={{
-                                                color: 'rgba(255,255,255,1)'
+                                                color: 'rgba(255,255,255,1)',
+                                                flex: 1,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                textAlign: 'right',
                                             }}
                                         >ECTS {studentMarks.markEcts}</Text>
                                     </View>
@@ -260,7 +299,11 @@ export default () => {
                     widht: windowWidth,
                 }}
             />
-            <ScrollView>
+            <ScrollView
+                style={{
+                    marginBottom: 60,
+                }}
+            >
                 {renderMarks()}
             </ScrollView>
         </View>

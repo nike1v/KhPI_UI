@@ -5,67 +5,67 @@ import { Text, Avatar } from 'react-native-elements';
 export default (props) => {
 
     const [isDirectory, setIsDirectory] = useState(false);
-
     const SubMenu = () => {
         return (
             <View>
-            <TouchableOpacity
-                style={{
-                    width: '100%',
-                    marginLeft: 26,
-                    marginTop: 5,
-                }}
-            >
-                <Text
+                <TouchableOpacity
                     style={{
-                        fontSize: 16,
+                        width: '100%',
+                        marginLeft: 26,
+                        marginTop: 5,
                     }}
-                >Map</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={{
-                    width: '100%',
-                    marginLeft: 26,
-                    marginTop: 5,
-                }}
-            >
-                <Text
+                    onPress={() => props.navigation.navigate('Map')}
+                >
+                    <Text
+                        style={{
+                            fontSize: 16,
+                        }}
+                    >Map</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
                     style={{
-                        fontSize: 16,
+                        width: '100%',
+                        marginLeft: 26,
+                        marginTop: 5,
                     }}
-                >Additional points</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={{
-                    width: '100%',
-                    marginLeft: 26,
-                    marginTop: 5,
-                }}
-            >
-                <Text
+                >
+                    <Text
+                        style={{
+                            fontSize: 16,
+                        }}
+                    >Additional points</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
                     style={{
-                        fontSize: 16,
+                        width: '100%',
+                        marginLeft: 26,
+                        marginTop: 5,
                     }}
-                >Contacts</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={{
-                    width: '100%',
-                    marginLeft: 26,
-                    marginTop: 5,
-                }}
-            >
-                <Text
+                >
+                    <Text
+                        style={{
+                            fontSize: 16,
+                        }}
+                    >Contacts</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
                     style={{
-                        fontSize: 16,
+                        width: '100%',
+                        marginLeft: 26,
+                        marginTop: 5,
                     }}
-                >Suggestions for improvement</Text>
-            </TouchableOpacity>
+                >
+                    <Text
+                        style={{
+                            fontSize: 16,
+                        }}
+                    >Suggestions for improvement</Text>
+                </TouchableOpacity>
             </View>
         )
     }
     return (
-        <View>
+        <View {...props}>
             <Avatar
                 rounded
                 size={110}
@@ -108,6 +108,7 @@ export default (props) => {
                     >Application</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                    {...props}
                     style={{
                         width: '100%',
                         marginLeft: 16,

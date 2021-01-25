@@ -9,14 +9,13 @@ export default (props) => {
                 h2
                 style={{
                     marginTop: 20,
-                    marginLeft: 10
+                    paddingLeft: 10,
+                    marginBottom: 10,
+                    paddingBottom: 10,
+                    borderBottomWidth: 1,
+                    borderBottomColor: 'rgba(0, 0, 0, 0.12)',
                 }}
             >{props.pageName}</Text>
-            <View
-                style={{
-                    marginTop: 30,
-                }}
-            />
         </>
     )
 }

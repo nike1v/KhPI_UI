@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
-const DrawerBar = (props) => {
+const DrawerBar = () => {
 
   return (
     <NavigationContainer>

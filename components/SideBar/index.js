@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, } from 'react-native';
+import { Image, View, TouchableOpacity } from 'react-native';
+import { Text, } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import News from '../News';
 import Schedule from '../Schedule';
@@ -7,117 +8,147 @@ import StudentBook from '../StudentBook';
 import Profile from '../Profile';
 import Notifications from '../Notifications';
 import Application from '../Application';
-import FreeDiscipline from '../FreeDiscipline';
+import FreeDiscipline from '../FreeDiscipline/index.js';
+import Map from '../Map';
+import { v4 } from 'uuid';
+import DetailDvv from '../FreeDiscipline/detail.js';
+import ApplicationDetail from '../Application/detail';
+import NewsDetail from '../News/detailNews';
 const Tab = createBottomTabNavigator();
 
 const SideBar = () => {
-    return (
+    const CustomBar = ({ state, descriptors, navigation }) => {
+        const focusedOptions = descriptors[state.routes[state.index].key].options;
 
+        if (focusedOptions.tabBarVisible === false) {
+            return null;
+        }
+
+        return (
+            <View style={{ flexDirection: 'row' }}>
+                {state.routes.slice(0, 5).map((route, index) => {
+                    const { options } = descriptors[route.key];
+                    const label =
+                        options.tabBarLabel !== undefined
+                            ? options.tabBarLabel
+                            : options.title !== undefined
+                                ? options.title
+                                : route.name;
+
+                    const isFocused = state.index === index;
+
+                    const onPress = () => {
+                        const event = navigation.emit({
+                            type: 'tabPress',
+                            target: route.key,
+                            canPreventDefault: true,
+                        });
+
+                        if (!isFocused && !event.defaultPrevented) {
+                            navigation.navigate(route.name);
+                        }
+                    };
+
+                    const home = require('../assets/home.png');
+                    const schedule = require('../assets/schedule.png');
+                    const scheduleCheked = require('../assets/scheduleCheked.png');
+                    const notification = require('../assets/notification.png');
+                    const notificationChecked = require('../assets/notificationChecked.png');
+                    const studentBook = require('../assets/studentBook.png');
+                    const studentBookChecked = require('../assets/studentBookChecked.png');
+                    const profile = require('../assets/profile.png');
+                    const profileChecked = require('../assets/profileChecked.png');
+
+                    return (
+                        <TouchableOpacity
+                            accessibilityRole="button"
+                            accessibilityState={isFocused ? { selected: true } : {}}
+                            onPress={onPress}
+                            style={{
+                                flex: 1,
+                                flexDirection: 'row',
+                                justifyContent: 'center',
+                                padding: 10,
+                                borderTopWidth: 1,
+                                borderTopColor: 'rgba(159,159,159,1)',
+                            }}
+                            key={v4()}
+                        >
+                            {index == 0 ?
+                                <Image source={home} /> :
+                                <></>}
+                            {index == 1 ?
+                                isFocused ?
+                                    <Image source={scheduleCheked} /> :
+                                    <Image source={schedule} /> : <></>}
+                            {index == 2 ?
+                                isFocused ?
+                                    <Image source={notificationChecked} /> :
+                                    <Image source={notification} /> : <></>}
+                            {index == 3 ?
+                                isFocused ?
+                                    <Image source={studentBookChecked} /> :
+                                    <Image source={studentBook} /> : <></>}
+                            {index == 4 ?
+                                isFocused ?
+                                    <Image source={profileChecked} /> :
+                                    <Image source={profile} /> : <></>}
+
+                        </TouchableOpacity>
+                    );
+                })}
+            </View>
+        );
+    }
+
+    return (
         <Tab.Navigator
             initialRouteName="News"
-            tabBarOptions={{
-                showLabel:false,
-            }}
-            barStyle={{ backgroundColor: '#ffffff' }}
-            screenOptions={{
-                
-            }}
+            tabBar={props => <CustomBar {...props} />}
         >
             <Tab.Screen
                 name="News"
                 children={() => <News />}
-                options={{
-                    tabBarLabel: 'News',
-                    tabBarIcon: ({ focused }) => {
-                        const image = focused
-                            ? require('../assets/home.png')
-                            : require('../assets/home.png');
-                        return (
-                            <Image
-                                source={image}
-                            />
-                        );
-                    }
-                }}
             />
             <Tab.Screen
                 name="Schedule"
                 children={() => <Schedule />}
-                options={{
-                    tabBarLabel: 'Schedule',
-                    tabBarIcon: ({ focused }) => {
-                        const image = focused
-                            ? require('../assets/scheduleCheked.png')
-                            : require('../assets/schedule.png');
-                        return (
-                            <Image
-                                source={image}
-                            />
-                        );
-                    }
-                }}
             />
             <Tab.Screen
                 name="Notifications"
                 children={() => <Notifications />}
-                options={{
-                    tabBarLabel: 'Notifications',
-                    tabBarIcon: ({ focused }) => {
-                        const image = focused
-                            ? require('../assets/notificationChecked.png')
-                            : require('../assets/notification.png');
-                        return (
-                            <Image
-                                source={image}
-                            />
-                        );
-                    }
-                }}
             />
             <Tab.Screen
                 name="StudentBook"
                 children={() => <StudentBook />}
-                options={{
-                    tabBarLabel: 'StudentBook',
-                    tabBarIcon: ({ focused }) => {
-                        const image = focused
-                            ? require('../assets/studentBookChecked.png')
-                            : require('../assets/studentBook.png');
-                        return (
-                            <Image
-                                source={image}
-                            />
-                        );
-                    }
-                }}
             />
             <Tab.Screen
                 name="Profile"
                 children={() => <Profile />}
-                options={{
-                    tabBarLabel: 'Profile',
-                    tabBarIcon: ({ focused }) => {
-                        const image = focused
-                            ? require('../assets/profileChecked.png')
-                            : require('../assets/profile.png');
-                        return (
-                            <Image
-                                source={image}
-                            />
-                        );
-                    }
-                }}
             />
             <Tab.Screen
                 name="Application"
                 children={() => <Application />}
-                tabBarVisible = {false}
-                
             />
             <Tab.Screen
                 name="FreeDiscipline"
                 children={() => <FreeDiscipline />}
-                
+            />
+            <Tab.Screen
+                name="Map"
+                children={() => <Map />}
+            />
+            <Tab.Screen
+                name="DetailDvv"
+                children={() => <DetailDvv />}
+            />
+            <Tab.Screen
+                name="ApplicationDetail"
+                children={() => <ApplicationDetail />}
+            />
+            <Tab.Screen
+                name="NewsDetail"
+                children={() => <NewsDetail />}
             />
         </Tab.Navigator>
     )

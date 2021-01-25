@@ -4,7 +4,6 @@ import { StatusBar } from 'react-native';
 import LoginScreen from './components/LoginScreen';
 import SignInLogIn from './components/SignInLogIn';
 import { createStackNavigator } from '@react-navigation/stack';
-import SideBar from './components/SideBar';
 import DrawerBar from './components/DrawerBar';
 
 const Stack = createStackNavigator();
