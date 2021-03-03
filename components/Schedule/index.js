@@ -1,36 +1,110 @@
 import React, { useEffect, useState } from 'react';
 import { View, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { Text } from 'react-native-elements';
-import { v4 } from 'uuid';
 import Header from '../Header';
+import ClassesRender from './classesRender';
 
 export default () => {
 
-
-    const [scheduleResult, setScheduleResult] = useState();
-    const [isLoading, setIsLoading] = useState(true);
+    const [dayNumber, setDayNumber] = useState({
+        Monday: '',
+        Tuesday: '',
+        Wednesday: '',
+        Thursday: '',
+        Friday: '',
+    });
+    const [renderDay, setRenderDay] = useState();
+    const [choosenDay, setChoosenDay] = useState('Black')
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
+    const date = new Date();
+    const week = date.getDay();
 
-    const fetching = async () => {
-        try {
-            setIsLoading(true);
-            const res = await (await fetch(`http://schedule.kpi.kharkov.ua/json/Schedule/10463/`)).json();
-            setScheduleResult([{
-                Monday: res.Monday,
-                Tuesday: res.Tuesday,
-                Wednesday: res.Wednesday,
-                Thursday: res.Thursday,
-                Friday: res.Friday,
-            }]);
-            setIsLoading(false);
-        } catch (error) {
-            console.log(error);
-            setIsLoading(false);
+    const getDayNumber = (weekDay) => {
+        let today = date.getDate();
+        switch (weekDay) {
+            case 1:
+                setDayNumber({
+                    Monday: today,
+                    Tuesday: today + 1,
+                    Wednesday: today + 2,
+                    Thursday: today + 3,
+                    Friday: today + 4,
+                });
+                break;
+            case 2:
+                setDayNumber({
+                    Monday: today - 1,
+                    Tuesday: today,
+                    Wednesday: today + 1,
+                    Thursday: today + 2,
+                    Friday: today + 3,
+                });
+                break;
+            case 3:
+                setDayNumber({
+                    Monday: today - 2,
+                    Tuesday: today - 1,
+                    Wednesday: today,
+                    Thursday: today + 1,
+                    Friday: today + 2,
+                });
+                break;
+            case 4:
+                setDayNumber({
+                    Monday: today - 3,
+                    Tuesday: today - 2,
+                    Wednesday: today - 1,
+                    Thursday: today,
+                    Friday: today + 1,
+                });
+                break;
+            case 5:
+                setDayNumber({
+                    Monday: today - 4,
+                    Tuesday: today - 3,
+                    Wednesday: today - 2,
+                    Thursday: today - 1,
+                    Friday: today,
+                });
+                break;
+            default:
+                setDayNumber({
+                    Monday: today,
+                    Tuesday: today + 1,
+                    Wednesday: today + 2,
+                    Thursday: today + 3,
+                    Friday: today + 4,
+                });
+                break;
         }
     }
+
+    const setDefaultWeekday = (weekDay) => {
+        switch (weekDay) {
+            case 0:
+            case 6:
+            case 1:
+                setRenderDay('Monday');
+                break;
+            case 2:
+                setRenderDay('Tuesday');
+                break;
+            case 3:
+                setRenderDay('Wednesday');
+                break;
+            case 4:
+                setRenderDay('Thursday');
+                break;
+            case 5:
+                setRenderDay('Friday');
+                break;
+        }
+    }
+
     useEffect(() => {
-        fetching();
+        setDefaultWeekday(week);
+        getDayNumber(week);
     }, [])
 
     return (
@@ -38,134 +112,124 @@ export default () => {
             <Header
                 pageName="Schedule"
             />
-            <ScrollView
-                horizontal={true}
-                keyboardShouldPersistTaps="always"
+            <View
                 style={{
                     width: windowWidth,
-                    borderBottomWidth: 1,
-                    borderBottomColor: 'rgba(0, 0, 0, 0.12)',
-                    paddingBottom: 10,
                 }}
             >
-                <TouchableOpacity
-                    onPress={() => console.log('1')}
-                    style={{
-                        width: windowWidth / 5,
-                    }}
-                >
-                    <Text
-                        style={{
-                            padding: 5,
-                            textAlign: 'center'
-                        }}
-                    >Mon</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => console.log('1')}
-                    style={{
-                        width: windowWidth / 5,
-                    }}
-                >
-                    <Text
-                        style={{
-                            padding: 5,
-                            textAlign: 'center'
-                        }}
-                    >Tue</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => console.log('1')}
-                    style={{
-                        width: windowWidth / 5,
-                    }}
-                >
-                    <Text
-                        style={{
-                            padding: 5,
-                            textAlign: 'center'
-                        }}
-                    >Wed</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => console.log('1')}
-                    style={{
-                        width: windowWidth / 5,
-                    }}
-                >
-                    <Text
-                        style={{
-                            padding: 5,
-                            textAlign: 'center'
-                        }}
-                    >Thu</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => console.log('1')}
-                    style={{
-                        width: windowWidth / 5,
-                    }}
-                >
-                    <Text
-                        style={{
-                            padding: 5,
-                            textAlign: 'center'
-                        }}
-                    >Fri</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => console.log('1')}
-                    style={{
-                        width: windowWidth / 5,
-                    }}
-                >
-                    <Text
-                        style={{
-                            padding: 5,
-                            textAlign: 'center'
-                        }}
-                    >Sat</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => console.log('1')}
-                    style={{
-                        width: windowWidth / 5,
-                    }}
-                >
-                    <Text
-                        style={{
-                            padding: 5,
-                            textAlign: 'center'
-                        }}
-                    >Sun</Text>
-                </TouchableOpacity>
-            </ScrollView>
-            {isLoading ?
-                <Text
+                <ScrollView
+                    horizontal={true}
+                    keyboardShouldPersistTaps="always"
                     style={{
                         width: windowWidth,
-                        height: windowHeight / 2,
-                        flex: 1,
-                        textAlign: 'center',
-                        textAlignVertical: 'center',
-                        fontSize: 26,
+                        borderBottomWidth: 2,
+                        borderBottomColor: 'rgba(0, 0, 0, 0.12)',
                     }}
-                >Loading!</Text> :
-                scheduleResult.map((weekday) => {
-                    return (
-                        <View
-                                key={v4()}
-                                keyboardShouldPersistTaps="always"
-                                style={{
-                                    width: windowWidth,
-                                    flex: 1,
-                                }}
-                            >
-                            <Text>{weekday.Monday.Para1.Name}</Text>
-                        </View>
-                    )
-                })
-            }
+                >
+                    <TouchableOpacity
+                        onPress={() => { setRenderDay('Monday') }}
+                        style={{
+                            width: windowWidth / 5,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                padding: 5,
+                                textAlign: 'center',
+                            }}
+                        >Mon</Text>
+                        <Text
+                            style={{
+                                textAlign: 'center',
+                                paddingBottom: 10,
+                            }}
+                        >{dayNumber.Monday}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { setRenderDay('Tuesday') }}
+                        style={{
+                            width: windowWidth / 5,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                padding: 5,
+                                textAlign: 'center',
+                            }}
+                        >Tue</Text>
+                        <Text
+                            style={{
+                                textAlign: 'center',
+                                paddingBottom: 10,
+                            }}
+                        >{dayNumber.Tuesday}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { setRenderDay('Wednesday') }}
+                        style={{
+                            width: windowWidth / 5,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                padding: 5,
+                                textAlign: 'center',
+                            }}
+                        >Wed</Text>
+                        <Text
+                            style={{
+                                textAlign: 'center',
+                                paddingBottom: 10,
+                            }}
+                        >{dayNumber.Wednesday}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { setRenderDay('Thursday') }}
+                        style={{
+                            width: windowWidth / 5,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                padding: 5,
+                                textAlign: 'center',
+                            }}
+                        >Thu</Text>
+                        <Text
+                            style={{
+                                textAlign: 'center',
+                                paddingBottom: 10,
+                            }}
+                        >{dayNumber.Thursday}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { setRenderDay('Friday') }}
+                        style={{
+                            width: windowWidth / 5,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                padding: 5,
+                                textAlign: 'center',
+                            }}
+                        >Fri</Text>
+                        <Text
+                            style={{
+                                textAlign: 'center',
+                                paddingBottom: 10,
+                            }}
+                        >{dayNumber.Friday}</Text>
+                    </TouchableOpacity>
+                </ScrollView>
+                <ScrollView
+                    style={{
+                        marginBottom: 150,
+                    }}
+                >
+                    <ClassesRender renderDay={renderDay} />
+                </ScrollView>
+            </View>
         </>
     )
 }

@@ -12,12 +12,14 @@ export default () => {
 
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
+    const userEmail = 'dgygurdenok@gmail.com';
+    const userPassword = '4NaqEf';
 
     const fetching = async (semestr) => {
         setSemestr(semestr);
         try {
             setIsLoading(true);
-            const res = await (await fetch(`http://schedule.kpi.kharkov.ua/JSON/kabinet?email=dgygurdenok@gmail.com&pass=4NaqEf&page=2&semestr=${semestr}`)).json();
+            const res = await (await fetch(`http://schedule.kpi.kharkov.ua/JSON/kabinet?email=${userEmail}&pass=${userPassword}&page=2&semestr=${semestr}`)).json();
             setSubjRes(res.map((el) => ({
                 subjId: el.subj_id,
                 subject: el.subject,
@@ -47,27 +49,36 @@ export default () => {
 
     const renderMarks = () => {
         return (
-            <>
+            <View
+                style={{
+                    height: windowHeight,
+                    marginBottom: 190,
+                }}
+            >
                 {isLoading ?
-                    <Text
+                    <View
                         style={{
-                            width: windowWidth,
-                            height: windowHeight/2,
-                            flex: 1,
-                            textAlign: 'center',
-                            textAlignVertical: 'center',
-                            fontSize: 26,
+                            height: windowHeight / 2,
                         }}
-                    >Loading!</Text> :
+                    >
+                        <Text
+                            style={{
+                                flex: 1,
+                                textAlign: 'center',
+                                textAlignVertical: 'center',
+                                fontSize: 26,
+                            }}
+                        >
+                            Loading!
+                        </Text>
+                    </View> :
                     subjRes.map((studentMarks) => {
-                        console.log(studentMarks);
                         return (
                             <View
                                 key={v4()}
                                 keyboardShouldPersistTaps="always"
                                 style={{
                                     width: windowWidth,
-                                    flex: 1,
                                 }}
                             >
                                 <View
@@ -96,13 +107,6 @@ export default () => {
 
                                             }}
                                         >{studentMarks.kafedraShort}</Text>
-                                        <View
-                                            style={{
-                                                flex: 1,
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                            }}
-                                        ></View>
                                         <Text
                                             style={{
                                                 color: 'rgba(255,255,255,1)',
@@ -170,7 +174,7 @@ export default () => {
                             </View>
                         )
                     })}
-            </>
+            </View>
         )
     }
 
@@ -187,7 +191,7 @@ export default () => {
                     width: windowWidth,
                     borderBottomWidth: 1,
                     borderBottomColor: 'rgba(0, 0, 0, 0.12)',
-                    paddingBottom: 10,
+                    height: 35,
                 }}
             >
                 <TouchableOpacity
@@ -198,8 +202,8 @@ export default () => {
                 >
                     <Text
                         style={{
-                            padding: 5,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            paddingBottom: 10,
                         }}
                     >Course 1</Text>
                 </TouchableOpacity>
@@ -211,8 +215,8 @@ export default () => {
                 >
                     <Text
                         style={{
-                            padding: 5,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            paddingBottom: 10,
                         }}
                     >Course 2</Text>
                 </TouchableOpacity>
@@ -224,8 +228,8 @@ export default () => {
                 >
                     <Text
                         style={{
-                            padding: 5,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            paddingBottom: 10,
                         }}
                     >Course 3</Text>
                 </TouchableOpacity>
@@ -237,8 +241,8 @@ export default () => {
                 >
                     <Text
                         style={{
-                            padding: 5,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            paddingBottom: 10,
                         }}
                     >Course 4</Text>
                 </TouchableOpacity>
@@ -250,8 +254,8 @@ export default () => {
                 >
                     <Text
                         style={{
-                            padding: 5,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            paddingBottom: 10,
                         }}
                     >Course 5</Text>
                 </TouchableOpacity>
@@ -261,7 +265,8 @@ export default () => {
                 keyboardShouldPersistTaps="always"
                 style={{
                     width: windowWidth,
-                    paddingTop: 5,
+                    height: 50,
+                    borderBottomWidth: 2,
                 }}
             >
                 <TouchableOpacity
@@ -272,8 +277,9 @@ export default () => {
                 >
                     <Text
                         style={{
-                            padding: 5,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            paddingTop: 10,
+                            paddingBottom: 10,
                         }}
                     >First semester</Text>
                 </TouchableOpacity>
@@ -285,23 +291,16 @@ export default () => {
                 >
                     <Text
                         style={{
-                            padding: 5,
-                            textAlign: 'center'
+                            textAlign: 'center',
+                            paddingTop: 10,
+                            paddingBottom: 10,
                         }}
                     >Second semeseter</Text>
                 </TouchableOpacity>
             </ScrollView>
-            <View
-                style={{
-                    marginTop: 10,
-                    marginBottom: 10,
-                    borderBottomWidth: 1,
-                    widht: windowWidth,
-                }}
-            />
             <ScrollView
                 style={{
-                    marginBottom: 60,
+                    marginBottom: 170,
                 }}
             >
                 {renderMarks()}

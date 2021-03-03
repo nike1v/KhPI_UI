@@ -14,6 +14,16 @@ import { v4 } from 'uuid';
 import DetailDvv from '../FreeDiscipline/detail.js';
 import ApplicationDetail from '../Application/detail';
 import NewsDetail from '../News/detailNews';
+
+/* import HomeIcon from '../assets/home.svg';
+import ScheduleIcon from '../assets/schedule.svg';
+import ScheduleChekedIcon from '../assets/scheduleCheked.svg';
+import NotificationIcon from '../assets/notification.svg';
+import NotificationCheckedIcon from '../assets/notificationChecked.svg';
+import StudentBookIcon from '../assets/studentBook.svg';
+import StudentBookCheckedIcon from '../assets/studentBookChecked.svg';
+import ProfileIcon from '../assets/profile.svg';
+import ProfileCheckedIcon from '../assets/profileChecked.svg'; */
 const Tab = createBottomTabNavigator();
 
 const SideBar = () => {
@@ -93,6 +103,26 @@ const SideBar = () => {
                                 isFocused ?
                                     <Image source={profileChecked} /> :
                                     <Image source={profile} /> : <></>}
+                            
+                            {/* {index == 0 ?
+                                <HomeIcon width={28} height={28} /> :
+                                <></>}
+                            {index == 1 ?
+                                isFocused ?
+                                    <ScheduleChekedIcon width={28} height={28} /> :
+                                    <ScheduleIcon width={28} height={28} /> : <></>}
+                            {index == 2 ?
+                                isFocused ?
+                                    <NotificationCheckedIcon width={28} height={28} /> :
+                                    <NotificationIcon width={28} height={28} /> : <></>}
+                            {index == 3 ?
+                                isFocused ?
+                                    <StudentBookCheckedIcon width={28} height={28} /> :
+                                    <StudentBookIcon width={28} height={28} /> : <></>}
+                            {index == 4 ?
+                                isFocused ?
+                                    <ProfileCheckedIcon width={28} height={28} /> :
+                                    <ProfileIcon width={28} height={28} /> : <></>} */}
 
                         </TouchableOpacity>
                     );

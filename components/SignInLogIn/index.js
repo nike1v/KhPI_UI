@@ -68,7 +68,7 @@ const SignInLogIn = (props) => {
                     onPress={() => props.setAuthorised(true)}
                 />
                 <Text style={{ color: 'gray', textAlign: 'center', margin: 23 }}
-                    onPress={() => Linking.openURL('http://google.com')}>
+                    onPress={() => Linking.openURL('https://google.com.ua')}>
                     Forgot your password?
                 </Text>
                 <Button
