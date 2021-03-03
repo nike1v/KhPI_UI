@@ -20,10 +20,10 @@ const ApplicationDetail = () => {
       description: 'Переведення здобувача вищої освіти Університету, який навчається за Договором або за кошти фізичних та юридичних осіб (контракт) на навчання за рахунок державного замовлення (бюджет) можливе за умови наявності вакантного бюджетного місця за відповідною спеціальністю. Директорат інституту формує рейтинг за відповідною спеціальністю здобувачів вищої освіти з урахуванням академічних досягнень кожного з них за попередній період.',
       toFree: 'Здобувач вищої освіти, який претендує на вакантне місце державного замовлення, подає до  дирекції інституту  заяву про переведення здобувача на бюджетну форму навчання. Заява оформлюється студентом особисто від руки на бланку заяв, далі візується директором інституту та передається співробітнику дирекції для подальшого оформлення наказу.',
       toPaid: 'Здобувачу вищої освіти, який навчався на бюджеті і який за підсумками семестрового контролю має академічну неуспішність за кількома навчальними дисциплінами, з урахуванням його досягнень у дослідницькій, науковій, громадській, спортивній та соціально-культурній діяльності інституту та університету може бути надана пропозиція про його переведення на контракт, за умови ліквідації академічної неуспішності до початку наступного семестрового контролю. Переведення здійснюється за  згодою студента на підставі заяви, яка потім предеається до дирекції для подальшої підготовки наказу про переведення.',
-      fileToFree: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/11/BLANK-ZAYAVY.pdf',
-      fileNameToFree: 'Зразок заяви переведення з контракту на бюджет',
-      fileToPaid: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/11/BLANK-ZAYAVY.pdf',
-      fileNameToPaid: 'Зразок заяви переведення з бюджету на контракт',
+      file: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/11/BLANK-ZAYAVY.pdf',
+      fileName: 'Зразок заяви переведення з контракту на бюджет',
+      fileContiniue: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/11/BLANK-ZAYAVY.pdf',
+      fileNameContiniue: 'Зразок заяви переведення з бюджету на контракт',
     }, {
       name: 'Повторний курс навчання',
       id: 2,
@@ -34,10 +34,10 @@ const ApplicationDetail = () => {
       name: 'Нарахування соціальної стипендії',
       id: 3,
       description: 'Право на соціальну стипендію мають  студенти НТУ “ХПІ”, які за результатами навчального семестру не мають академічної заборгованості, незадовільних результатів навчання, включені до Рейтингу та не отримують академічних стипендій, не перебувають на державному утриманні (крім дітей -сиріт та дітей позбавлених батківського піклування), не пребувають в академічній відпусці, і  відносяться до таких категорій:',
-      fileMakePay: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/12/Zayava-na-sotsialnu-stypendiyu.pdf',
-      fileAddPay: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/12/Zayava-na-prodovzhennya-vyplaty-sotsialnoyi-stypendiyi.pdf',
-      fileNameMake: 'Зразок заяви на призначення соціальної стипендії',
-      filaNameAdd: 'Зразок заяви на продовження виплати соціальної стипендії',
+      file: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/12/Zayava-na-sotsialnu-stypendiyu.pdf',
+      fileContiniue: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/12/Zayava-na-prodovzhennya-vyplaty-sotsialnoyi-stypendiyi.pdf',
+      fileName: 'Зразок заяви на призначення соціальної стипендії',
+      filaNameContiniue: 'Зразок заяви на продовження виплати соціальної стипендії',
     }, {
       name: 'Відрахування за власним бажанням',
       id: 4,
@@ -53,9 +53,9 @@ const ApplicationDetail = () => {
     }, {
       name: 'Академічна відпустка',
       id: 6,
-      descriptionGet: 'Здобувач вищої освіти Університету, в незалежності від рівня вищої освіти та форми навчання, може взяти перерву у навчанні у зв’язку з обставинами,  які унеможливлюють виконання освітньої (освітньо-професійної, освітньо-наукової) програми з таких причин:',
-      fileGet: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/11/BLANK-ZAYAVY.pdf',
-      fileNameGet: 'Бланк заяви про надання академвідпустки',
+      description: 'Здобувач вищої освіти Університету, в незалежності від рівня вищої освіти та форми навчання, може взяти перерву у навчанні у зв’язку з обставинами,  які унеможливлюють виконання освітньої (освітньо-професійної, освітньо-наукової) програми з таких причин:',
+      file: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/11/BLANK-ZAYAVY.pdf',
+      fileName: 'Бланк заяви про надання академвідпустки',
       descriptionContiniue: 'Допуск на навчання здобувачів вищої освіти, у яких завершився термін академічної відпустки, незалежно від причин переривання навчання, здійснюється наказом Ректора на підставі заяви здобувача до директорату інституту не пізніше двох тижнів до завершення терміну академічної відпустки. Допуск на навчання здобувачів вищої освіти, яким надано академічну відпустку, здійснюється як правило, під час канікул але не пізніше двох тижнів від початку навчального семестру.',
       fileContiniue: 'http://web.kpi.kharkov.ua/infiz/wp-content/uploads/sites/59/2020/11/BLANK-ZAYAVY.pdf',
       fileNameContiniue: 'Зразок заяви на продовження та повернення академічної відпустки'
@@ -137,9 +137,18 @@ const ApplicationDetail = () => {
         <Text
           style={{
             fontSize: 18,
+            marginBottom: 5,
           }}
         >
           {applicationListDetails[apllicationId].description}
+        </Text>
+        <Text
+          style={{
+            fontSize: 18,
+            paddingTop: 5,
+          }}
+        >
+          {applicationListDetails[apllicationId].descriptionContiniue}
         </Text>
         <View
           style={{
@@ -153,9 +162,20 @@ const ApplicationDetail = () => {
             style={{
               fontSize: 16,
               color: 'blue',
+              margin: 10,
             }}
           >
             {applicationListDetails[apllicationId].fileName}
+          </Text>
+          <Text
+            onPress={() => {Linking.openURL(applicationListDetails[apllicationId].fileContiniue)}}
+            style={{
+              fontSize: 16,
+              color: 'blue',
+              margin: 10,
+            }}
+          >
+            {applicationListDetails[apllicationId].fileNameContiniue}
           </Text>
         </View>
       </ScrollView>
