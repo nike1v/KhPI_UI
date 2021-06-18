@@ -196,7 +196,7 @@ export default () => {
                                             style={{
                                                 fontSize: 18,
                                             }}
-                                        >Phone munber</Text>
+                                        >Phone number</Text>
                                         <Text
                                             style={{
                                                 textAlign: 'right',

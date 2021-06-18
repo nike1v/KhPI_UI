@@ -65,7 +65,7 @@ const SignInLogIn = (props) => {
                     title="SIGN IN"
                     type='solid'
                     style={styles.singInButton}
-                    onPress={() => props.setAuthorised(true)}
+                    onPress={() => props.setIsAuthorized(true)}
                 />
                 <Text style={{ color: 'gray', textAlign: 'center', margin: 23 }}
                     onPress={() => Linking.openURL('https://google.com.ua')}>
@@ -118,7 +118,7 @@ const SignInLogIn = (props) => {
                 <Button
                     title="REGISTER NOW"
                     type='solid'
-                    onPress={() => props.setAuthorised(true)}
+                    onPress={() => props.setIsAuthorized(true)}
                 />
             </>
         )

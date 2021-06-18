@@ -12,13 +12,13 @@ const App = () => {
 
   //const [name, setName] = useState('');
   //const [isOver, setIsOver] = useState(false);
-  const [isAuthorised, setIsAuthorised] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   /* useEffect(() => {
-    const timeouthandle = setTimeout(() => {
+    const timeoutHandle = setTimeout(() => {
       setIsOver(true);
     }, 2000);
-    return cleanupTimer = (timeouthandle) => {
+    return cleanupTimer = (timeoutHandle) => {
       clearTimeout(timeoutHandle);
     }
   }) */
@@ -26,9 +26,9 @@ const App = () => {
   return (
     <>
       <StatusBar />
-      {isAuthorised ?
+      {isAuthorized ?
         <DrawerBar /> :
-        <SignInLogIn setAuthorised={setIsAuthorised} />
+        <SignInLogIn setIsAuthorized={setIsAuthorized} />
       }
     </>
   )

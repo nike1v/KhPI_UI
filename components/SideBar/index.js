@@ -61,7 +61,7 @@ const SideBar = () => {
 
                     const home = require('../assets/home.png');
                     const schedule = require('../assets/schedule.png');
-                    const scheduleCheked = require('../assets/scheduleCheked.png');
+                    const scheduleChecked = require('../assets/scheduleCheked.png');
                     const notification = require('../assets/notification.png');
                     const notificationChecked = require('../assets/notificationChecked.png');
                     const studentBook = require('../assets/studentBook.png');
@@ -89,7 +89,7 @@ const SideBar = () => {
                                 <></>}
                             {index == 1 ?
                                 isFocused ?
-                                    <Image source={scheduleCheked} /> :
+                                    <Image source={scheduleChecked} /> :
                                     <Image source={schedule} /> : <></>}
                             {index == 2 ?
                                 isFocused ?
