@@ -139,7 +139,7 @@ const ApplicationDetail = () => {
       fileName: "",
     },
   ]);
-  const { apllicationId } = route.params;
+  const { applicationId } = route.params;
 
   return (
     <View
@@ -160,7 +160,7 @@ const ApplicationDetail = () => {
             fontSize: 20,
           }}
         >
-          {applicationListDetails[apllicationId].name}
+          {applicationListDetails[applicationId].name}
         </Text>
       </View>
       <ScrollView
@@ -175,7 +175,7 @@ const ApplicationDetail = () => {
             marginBottom: 5,
           }}
         >
-          {applicationListDetails[apllicationId].description}
+          {applicationListDetails[applicationId].description}
         </Text>
         <Text
           style={{
@@ -183,7 +183,7 @@ const ApplicationDetail = () => {
             paddingTop: 5,
           }}
         >
-          {applicationListDetails[apllicationId].descriptionContiniue}
+          {applicationListDetails[applicationId].descriptionContiniue}
         </Text>
         <View
           style={{
@@ -194,7 +194,7 @@ const ApplicationDetail = () => {
         >
           <Text
             onPress={() => {
-              Linking.openURL(applicationListDetails[apllicationId].file);
+              Linking.openURL(applicationListDetails[applicationId].file);
             }}
             style={{
               fontSize: 16,
@@ -202,12 +202,12 @@ const ApplicationDetail = () => {
               margin: 10,
             }}
           >
-            {applicationListDetails[apllicationId].fileName}
+            {applicationListDetails[applicationId].fileName}
           </Text>
           <Text
             onPress={() => {
               Linking.openURL(
-                applicationListDetails[apllicationId].fileContiniue
+                applicationListDetails[applicationId].fileContiniue
               );
             }}
             style={{
@@ -216,7 +216,7 @@ const ApplicationDetail = () => {
               margin: 10,
             }}
           >
-            {applicationListDetails[apllicationId].fileNameContiniue}
+            {applicationListDetails[applicationId].fileNameContiniue}
           </Text>
         </View>
       </ScrollView>

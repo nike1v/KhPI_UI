@@ -1,26 +1,15 @@
-// import React from "react";
-// import { View } from "react-native";
-// import { Text } from "react-native-elements";
-// import { Image } from "react-native";
-
-import React, { useState } from "react";
-import { ScrollView, Dimensions } from "react-native";
+import React from "react";
 import { TouchableOpacity } from "react-native";
-import { Image, Button, Alert } from "react-native";
+import { Image, Alert } from "react-native";
 import { View } from "react-native";
 import { Text } from "react-native-elements";
 import { v4 } from "uuid";
-import Header from "../Header";
-import { useNavigation } from "@react-navigation/native";
-import * as Linking from "expo-linking";
 import { styles } from "./newsStyles";
-import { Route } from "react-router-native";
 import { useRoute } from "@react-navigation/native";
 
 const NewsDetail = () => {
   const route = useRoute();
   const { newsName } = route.params;
-  const windowWidth = Dimensions.get("window").width;
 
   return (
     <View>
@@ -28,10 +17,7 @@ const NewsDetail = () => {
       <Text style={styles.title}>{newsName}</Text>
       <View>
         <Image
-          style={{
-            marginTop: 10,
-            width: windowWidth,
-          }}
+          style={styles.image}
           source={require("../assets/newsPreview.png")}
         />
       </View>
@@ -63,24 +49,46 @@ const NewsDetail = () => {
         Harvard Football.
       </Text>
 
-      <Text style={styles.date}>Aug 11, 2021</Text>
-      <Text style={styles.author}>Stepan Polezhayko</Text>
-      {/* <View>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text style={styles.date}>Aug 11, 2021</Text>
+        <Text style={styles.author}>Stepan Polezhayko</Text>
+      </View>
+
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginTop: 30,
+        }}
+      >
         <TouchableOpacity
           style={styles.viewed}
           color="#5A4DDC"
-          onPress={Alert.alert("Syka")}
+          onPress={() => Alert.alert("Syka")}
         >
-          <Text>VIEWED</Text>
+          <Text
+            style={{
+              textAlign: "center",
+              color: "white",
+            }}
+          >
+            VIEWED
+          </Text>
         </TouchableOpacity>
-      </View> */}
-      <View style={styles.share}>
-        <Button
-          style={styles.border}
-          title="Share"
+        <TouchableOpacity
+          style={styles.share}
           color="#5A4DDC"
-          onPress={() => Alert.alert("Right button pressed")}
-        />
+          onPress={() => Alert.alert("Syka")}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              color: "white",
+            }}
+          >
+            Share
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

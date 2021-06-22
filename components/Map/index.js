@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../Header';
-import MapView/* , { PROVIDER_GOOGLE } */ from 'react-native-maps';
+import MapView , { PROVIDER_GOOGLE }  from 'react-native-maps';
 
 export default () => {
     return (
@@ -10,7 +10,7 @@ export default () => {
             />
             <MapView
                 style={{ flex: 1 }}
-                provider={google}
+                provider={PROVIDER_GOOGLE}
                 showsUserLocation
                 initialRegion={{
                     latitude: 49.999186,

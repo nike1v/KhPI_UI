@@ -5,9 +5,7 @@ import LoginScreen from "./components/LoginScreen";
 import SignInLogIn from "./components/SignInLogIn";
 import { createStackNavigator } from "@react-navigation/stack";
 import DrawerBar from "./components/DrawerBar";
-import { Font } from "expo";
-import * as Fonty from "expo-font";
-import { AppLoading } from "expo";
+import { useFonts } from 'expo-font';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +13,10 @@ const App = () => {
   //const [name, setName] = useState('');
   //const [isOver, setIsOver] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
+
+  useFonts({
+    Avenir: require('./assets/fonts/Avenir.ttf'),
+  });
 
   /* useEffect(() => {
     const timeoutHandle = setTimeout(() => {

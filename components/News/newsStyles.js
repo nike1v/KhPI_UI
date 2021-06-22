@@ -9,14 +9,14 @@
       format("woff2");
 } */
 
-import * as React from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
-import * as Font from "expo-font";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
+
+const windowWidth = Dimensions.get("window").width;
 
 export const styles = StyleSheet.create({
   category: {
-    marginTop: 58,
+    marginTop: 24,
     paddingLeft: 24,
     opacity: 0.5,
     fontSize: 16,
@@ -26,31 +26,31 @@ export const styles = StyleSheet.create({
 
   title: {
     paddingLeft: 24,
-    paddingTop: 9,
+    marginTop: 9,
     marginBottom: 16,
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 24,
     lineHeight: 28,
   },
-
+  image: {
+    width: windowWidth,
+  },
   description: {
     paddingTop: 17,
     paddingLeft: 24,
     paddingRight: 24,
-    fontSize: 12,
-    fontStyle: "normal",
     color: "rgba(0, 0, 0, 1)",
     lineHeight: 14,
-    // position: "absolute",
     letterSpacing: 0.25,
     fontWeight: "normal",
+    fontSize: 12,
+    fontStyle: "normal",
+    fontFamily: 'Avenir',
   },
   date: {
-    position: "absolute",
+    marginTop: 20,
     paddingLeft: 24,
-    paddingRight: 24,
-    paddingTop: 674,
     fontStyle: "normal",
     fontWeight: "500",
     fontSize: 12,
@@ -58,44 +58,33 @@ export const styles = StyleSheet.create({
     letterSpacing: 0.25,
     opacity: 0.5,
   },
-
   author: {
-    position: "absolute",
-    right: 24,
-    top: 674,
-
+    paddingRight: 24,
+    marginTop: 20,
     fontStyle: "normal",
     fontWeight: "500",
     fontSize: 12,
     lineHeight: 16,
-    /* identical to box height, or 133% */
-
     textAlign: "right",
     letterSpacing: 0.25,
     color: "rgba(0, 0, 0, 1)",
   },
   viewed: {
-    position: "absolute",
+    backgroundColor: "#5A4DDC",
     width: 150,
     height: 48,
-    left: 24,
-    top: 732,
-    bottom: 32,
+    marginLeft: 24,
+    padding: 15,
     color: "rgba(90,77,220, 0.8)",
     borderRadius: 32,
   },
   share: {
-    position: "absolute",
+    backgroundColor: "#5A4DDC",
     width: 150,
     height: 48,
-    right: 24,
-    top: 732,
-    bottom: 32,
+    marginRight: 24,
+    padding: 15,
+    color: "rgba(90,77,220, 0.8)",
     borderRadius: 32,
-    borderWidth: 1,
-  },
-  border: {
-    borderRadius: 32,
-    borderWidth: 1,
   },
 });
