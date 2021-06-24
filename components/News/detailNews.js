@@ -1,15 +1,25 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Image, Alert } from "react-native";
-import { View } from "react-native";
+import { View, TouchableHighlight } from "react-native";
 import { Text } from "react-native-elements";
-import { v4 } from "uuid";
 import { styles } from "./newsStyles";
 import { useRoute } from "@react-navigation/native";
 
 const NewsDetail = () => {
   const route = useRoute();
   const { newsName } = route.params;
+
+  var [isPress, setIsPress] = React.useState(false);
+
+  var propsForViewed = {
+    activeOpacity: 1,
+    underlayColor: "#5A4DDC",
+    color: "white",
+    style: isPress ? styles.viewedTrue : styles.viewedFalse,
+    // onHideUnderlay: () => setIsPress(false),
+    onShowUnderlay: () => setIsPress(true),
+  };
 
   return (
     <View>
@@ -61,33 +71,41 @@ const NewsDetail = () => {
           marginTop: 30,
         }}
       >
-        <TouchableOpacity
-          style={styles.viewed}
-          color="#5A4DDC"
-          onPress={() => Alert.alert("Syka")}
+        <TouchableHighlight
+          {...propsForViewed}
+          //  color="#5A4DDC"
+          onPress={() => {}}
         >
           <Text
             style={{
               textAlign: "center",
-              color: "white",
+              lineHeight: 17,
+              fontSize: 14,
+              letterSpacing: 0.25,
+              fontFamily: "Avenir",
+              fontWeight: "bold",
+              color: isPress ? "white" : "#5A4DDC",
             }}
           >
             VIEWED
           </Text>
-        </TouchableOpacity>
+        </TouchableHighlight>
         <TouchableOpacity
           style={styles.share}
-          color="#5A4DDC"
-          onPress={() => Alert.alert("Syka")}
+          onPress={() => Alert.alert("Share")}
         >
-          <Text
+          <View
             style={{
-              textAlign: "center",
-              color: "white",
+              flexDirection: "row",
+              alignContent: "space-between",
             }}
           >
-            Share
-          </Text>
+            <Image
+              source={require("../assets/Vector.png")}
+              style={styles.sharePng}
+            />
+            <Text style={styles.shareText}>SHARE</Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>
