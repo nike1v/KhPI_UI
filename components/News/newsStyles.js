@@ -1,14 +1,3 @@
-/* @font-face {
-  font-family: "font3f2cd34815cd131212962cee81f674c8";
-
-  src: url("https://nomail.com.ua/files/eot/3f2cd34815cd131212962cee81f674c8.eot?#iefix")
-      format("embedded-opentype"),
-    url("https://nomail.com.ua/files/woff/3f2cd34815cd131212962cee81f674c8.woff")
-      format("woff"),
-    url("https://nomail.com.ua/files/woff2/3f2cd34815cd131212962cee81f674c8.woff2")
-      format("woff2");
-} */
-
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 
@@ -119,5 +108,14 @@ export const styles = StyleSheet.create({
     paddingRight: 36,
     paddingLeft: 16.5,
     paddingTop: 18,
+  },
+  shareContentPosition: {
+    flexDirection: "row",
+    alignContent: "space-between",
+  },
+  buttonsPosition: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 30,
   },
 });

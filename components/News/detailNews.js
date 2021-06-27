@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { Image, Alert } from "react-native";
 import { View, TouchableHighlight } from "react-native";
@@ -10,15 +10,19 @@ const NewsDetail = () => {
   const route = useRoute();
   const { newsName } = route.params;
 
-  var [isPress, setIsPress] = React.useState(false);
+  let newsPreview = "../assets/newsPreview.png";
+  let shareImage = "../assets/Vector.png";
 
-  var propsForViewed = {
+  let [isPress, setIsPress] = useState(false);
+
+  let propsForViewed = {
     activeOpacity: 1,
     underlayColor: "#5A4DDC",
-    color: "white",
     style: isPress ? styles.viewedTrue : styles.viewedFalse,
     // onHideUnderlay: () => setIsPress(false),
     onShowUnderlay: () => setIsPress(true),
+    onPress: () =>
+      Alert.alert("Added successfully!", "Added to viewed category"),
   };
 
   return (
@@ -26,10 +30,7 @@ const NewsDetail = () => {
       <Text style={styles.category}>Culture</Text>
       <Text style={styles.title}>{newsName}</Text>
       <View>
-        <Image
-          style={styles.image}
-          source={require("../assets/newsPreview.png")}
-        />
+        <Image style={styles.image} source={require(newsPreview)} />
       </View>
       <Text style={styles.description}>
         He had a very low-key, sort of grit factor to him that was just
@@ -64,18 +65,8 @@ const NewsDetail = () => {
         <Text style={styles.author}>Stepan Polezhayko</Text>
       </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginTop: 30,
-        }}
-      >
-        <TouchableHighlight
-          {...propsForViewed}
-          //  color="#5A4DDC"
-          onPress={() => {}}
-        >
+      <View style={styles.buttonsPosition}>
+        <TouchableHighlight {...propsForViewed}>
           <Text
             style={{
               textAlign: "center",
@@ -92,18 +83,12 @@ const NewsDetail = () => {
         </TouchableHighlight>
         <TouchableOpacity
           style={styles.share}
-          onPress={() => Alert.alert("Share")}
+          onPress={() =>
+            Alert.alert("Shared!", "You successfully shared this news ")
+          }
         >
-          <View
-            style={{
-              flexDirection: "row",
-              alignContent: "space-between",
-            }}
-          >
-            <Image
-              source={require("../assets/Vector.png")}
-              style={styles.sharePng}
-            />
+          <View style={styles.shareContentPosition}>
+            <Image style={styles.sharePng} source={require(shareImage)} />
             <Text style={styles.shareText}>SHARE</Text>
           </View>
         </TouchableOpacity>
