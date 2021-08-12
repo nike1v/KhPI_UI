@@ -5,7 +5,7 @@ import LoginScreen from "./components/LoginScreen";
 import SignInLogIn from "./components/SignInLogIn";
 import { createStackNavigator } from "@react-navigation/stack";
 import DrawerBar from "./components/DrawerBar";
-import { useFonts } from 'expo-font';
+import { useFonts } from "expo-font";
 
 const Stack = createStackNavigator();
 
@@ -15,7 +15,8 @@ const App = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   useFonts({
-    Avenir: require('./assets/fonts/Avenir.ttf'),
+    Avenir: require("./assets/fonts/Avenir.ttf"),
+    Helvetica: require("./assets/fonts/HelveticaRegular.ttf"),
   });
 
   /* useEffect(() => {

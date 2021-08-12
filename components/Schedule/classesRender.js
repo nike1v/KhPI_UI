@@ -265,7 +265,7 @@ const ClassesRender = (props) => {
                 <View
                   style={{
                     minHeight: 100,
-                    backgroundColor: "rgba(90,77,220,1)",
+                    backgroundColor: "#A11A16",
                     margin: 10,
                     borderRadius: 10,
                   }}
