@@ -75,10 +75,10 @@ export default () => {
                                 marginTop: 10,
                             }}
                             key={application.id}
-                            apllicationId={application.id}
+                            applicationId={application.id}
                             onPress={() => {
                                 navigation.navigate('ApplicationDetail', {
-                                    apllicationId: application.id,
+                                    applicationId: application.id,
                                 });
                             }}
                         >

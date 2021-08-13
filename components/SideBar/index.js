@@ -1,19 +1,20 @@
-import React from 'react';
-import { Image, View, TouchableOpacity } from 'react-native';
-import { Text, } from 'react-native-elements';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import News from '../News';
-import Schedule from '../Schedule';
-import StudentBook from '../StudentBook';
-import Profile from '../Profile';
-import Notifications from '../Notifications';
-import Application from '../Application';
-import FreeDiscipline from '../FreeDiscipline/index.js';
-import Map from '../Map';
-import { v4 } from 'uuid';
-import DetailDvv from '../FreeDiscipline/detail.js';
-import ApplicationDetail from '../Application/detail';
-import NewsDetail from '../News/detailNews';
+import React from "react";
+import { Image, View, TouchableOpacity } from "react-native";
+import { Text } from "react-native-elements";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import News from "../News";
+import Schedule from "../Schedule";
+import StudentBook from "../StudentBook";
+import Profile from "../Profile";
+import Notifications from "../Notifications";
+import Application from "../Application";
+import FreeDiscipline from "../FreeDiscipline/index.js";
+import Map from "../Map";
+import { v4 } from "uuid";
+import DetailDvv from "../FreeDiscipline/detail.js";
+import ApplicationDetail from "../Application/detail";
+import NewsDetail from "../News/detailNews";
+import Svg, { G, Path, S } from "react-native-svg";
 
 /* import HomeIcon from '../assets/home.svg';
 import ScheduleIcon from '../assets/schedule.svg';
@@ -27,84 +28,260 @@ import ProfileCheckedIcon from '../assets/profileChecked.svg'; */
 const Tab = createBottomTabNavigator();
 
 const SideBar = () => {
-    const CustomBar = ({ state, descriptors, navigation }) => {
-        const focusedOptions = descriptors[state.routes[state.index].key].options;
+  const CustomBar = ({ state, descriptors, navigation }) => {
+    const focusedOptions = descriptors[state.routes[state.index].key].options;
 
-        if (focusedOptions.tabBarVisible === false) {
-            return null;
-        }
+    if (focusedOptions.tabBarVisible === false) {
+      return null;
+    }
 
-        return (
-            <View style={{ flexDirection: 'row' }}>
-                {state.routes.slice(0, 5).map((route, index) => {
-                    const { options } = descriptors[route.key];
-                    const label =
-                        options.tabBarLabel !== undefined
-                            ? options.tabBarLabel
-                            : options.title !== undefined
-                                ? options.title
-                                : route.name;
+    return (
+      <View style={{ flexDirection: "row" }}>
+        {state.routes.slice(0, 5).map((route, index) => {
+          const { options } = descriptors[route.key];
+          const label =
+            options.tabBarLabel !== undefined
+              ? options.tabBarLabel
+              : options.title !== undefined
+              ? options.title
+              : route.name;
 
-                    const isFocused = state.index === index;
+          const isFocused = state.index === index;
 
-                    const onPress = () => {
-                        const event = navigation.emit({
-                            type: 'tabPress',
-                            target: route.key,
-                            canPreventDefault: true,
-                        });
+          const onPress = () => {
+            const event = navigation.emit({
+              type: "tabPress",
+              target: route.key,
+              canPreventDefault: true,
+            });
 
-                        if (!isFocused && !event.defaultPrevented) {
-                            navigation.navigate(route.name);
-                        }
-                    };
+            if (!isFocused && !event.defaultPrevented) {
+              navigation.navigate(route.name);
+            }
+          };
 
-                    const home = require('../assets/home.png');
-                    const schedule = require('../assets/schedule.png');
-                    const scheduleChecked = require('../assets/scheduleCheked.png');
-                    const notification = require('../assets/notification.png');
-                    const notificationChecked = require('../assets/notificationChecked.png');
-                    const studentBook = require('../assets/studentBook.png');
-                    const studentBookChecked = require('../assets/studentBookChecked.png');
-                    const profile = require('../assets/profile.png');
-                    const profileChecked = require('../assets/profileChecked.png');
+          const home = require("../assets/home.png");
+          const schedule = require("../assets/schedule.png");
+          const scheduleChecked = require("../assets/scheduleCheked.png");
+          const notification = require("../assets/notification.png");
+          const notificationChecked = require("../assets/notificationChecked.png");
+          const studentBook = require("../assets/studentBook.png");
+          const studentBookChecked = require("../assets/studentBookChecked.png");
+          const profile = require("../assets/profile.png");
+          const profileChecked = require("../assets/profileChecked.png");
 
-                    return (
-                        <TouchableOpacity
-                            accessibilityRole="button"
-                            accessibilityState={isFocused ? { selected: true } : {}}
-                            onPress={onPress}
-                            style={{
-                                flex: 1,
-                                flexDirection: 'row',
-                                justifyContent: 'center',
-                                padding: 10,
-                                borderTopWidth: 1,
-                                borderTopColor: 'rgba(159,159,159,1)',
-                            }}
-                            key={v4()}
-                        >
-                            {index == 0 ?
-                                <Image source={home} /> :
-                                <></>}
-                            {index == 1 ?
-                                isFocused ?
-                                    <Image source={scheduleChecked} /> :
-                                    <Image source={schedule} /> : <></>}
-                            {index == 2 ?
-                                isFocused ?
-                                    <Image source={notificationChecked} /> :
-                                    <Image source={notification} /> : <></>}
-                            {index == 3 ?
-                                isFocused ?
-                                    <Image source={studentBookChecked} /> :
-                                    <Image source={studentBook} /> : <></>}
-                            {index == 4 ?
-                                isFocused ?
-                                    <Image source={profileChecked} /> :
-                                    <Image source={profile} /> : <></>}
-                            
-                            {/* {index == 0 ?
+          return (
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityState={isFocused ? { selected: true } : {}}
+              onPress={onPress}
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "center",
+                padding: 10,
+                borderTopWidth: 1,
+                borderTopColor: "rgba(159,159,159,1)",
+              }}
+              key={v4()}
+            >
+              {index == 0 ? (
+                isFocused ? (
+                  <Svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M27.6583 13.1752L24.7416 10.2585L14.8249 0.341691C14.3693 -0.113897 13.6308 -0.113897 13.1752 0.341691L3.25839 10.2585L0.341691 13.1752C-0.113897 13.6308 -0.113897 14.3693 0.341691 14.8249C0.569777 15.0529 0.867864 15.1667 1.16653 15.1667C1.4652 15.1667 1.76329 15.0529 1.99138 14.8249L2.91655 13.8997V26.8335C2.91655 27.4775 3.43923 28.0002 4.08323 28.0002H10.5C11.144 28.0002 11.6667 27.4775 11.6667 26.8335V17.5H16.3334V25.6668L16.3371 26.7049C16.3397 27.421 16.921 28.0002 17.6371 28.0002H23.9168C24.5608 28.0002 25.0835 27.4775 25.0835 26.8335V13.8997L26.0086 14.8249C26.2367 15.0529 26.5348 15.1667 26.8335 15.1667C27.1322 15.1667 27.4302 15.0529 27.6583 14.8249C28.1139 14.3693 28.1139 13.6308 27.6583 13.1752ZM22.7501 25.6668H18.6667V16.3334C18.6667 15.6894 18.1441 15.1667 17.5 15.1667H10.5C9.85596 15.1667 9.33329 15.6894 9.33329 16.3334V25.6668H5.24991V11.5669L14 2.8168L22.7501 11.5669V25.6668Z"
+                      fill="#9F1F21"
+                    />
+                  </Svg>
+                ) : (
+                  <Svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M27.6583 13.1752L24.7416 10.2585L14.8249 0.341691C14.3693 -0.113897 13.6308 -0.113897 13.1752 0.341691L3.25839 10.2585L0.341691 13.1752C-0.113897 13.6308 -0.113897 14.3693 0.341691 14.8249C0.569777 15.0529 0.867864 15.1667 1.16653 15.1667C1.4652 15.1667 1.76329 15.0529 1.99138 14.8249L2.91655 13.8997V26.8335C2.91655 27.4775 3.43923 28.0002 4.08323 28.0002H10.5C11.144 28.0002 11.6667 27.4775 11.6667 26.8335V17.5H16.3334V25.6668L16.3371 26.7049C16.3397 27.421 16.921 28.0002 17.6371 28.0002H23.9168C24.5608 28.0002 25.0835 27.4775 25.0835 26.8335V13.8997L26.0086 14.8249C26.2367 15.0529 26.5348 15.1667 26.8335 15.1667C27.1322 15.1667 27.4302 15.0529 27.6583 14.8249C28.1139 14.3693 28.1139 13.6308 27.6583 13.1752ZM22.7501 25.6668H18.6667V16.3334C18.6667 15.6894 18.1441 15.1667 17.5 15.1667H10.5C9.85596 15.1667 9.33329 15.6894 9.33329 16.3334V25.6668H5.24991V11.5669L14 2.8168L22.7501 11.5669V25.6668Z"
+                      fill="black"
+                    />
+                  </Svg>
+                )
+              ) : (
+                <></>
+              )}
+              {index == 1 ? (
+                isFocused ? (
+                  <Svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M21 30C19.4178 30 17.871 29.5308 16.5554 28.6518C15.2398 27.7727 14.2145 26.5233 13.609 25.0615C13.0035 23.5997 12.845 21.9911 13.1537 20.4393C13.4624 18.8874 14.2243 17.462 15.3431 16.3431C16.462 15.2243 17.8874 14.4624 19.4393 14.1537C20.9911 13.845 22.5997 14.0035 24.0615 14.609C25.5233 15.2145 26.7727 16.2398 27.6518 17.5554C28.5308 18.871 29 20.4178 29 22C29 24.1217 28.1571 26.1566 26.6569 27.6569C25.1566 29.1571 23.1217 30 21 30ZM21 16C19.8133 16 18.6533 16.3519 17.6666 17.0112C16.6799 17.6705 15.9109 18.6075 15.4567 19.7039C15.0026 20.8003 14.8838 22.0067 15.1153 23.1705C15.3468 24.3344 15.9182 25.4035 16.7574 26.2426C17.5965 27.0818 18.6656 27.6532 19.8295 27.8847C20.9933 28.1162 22.1997 27.9974 23.2961 27.5433C24.3925 27.0892 25.3295 26.3201 25.9888 25.3334C26.6481 24.3467 27 23.1867 27 22C27 20.4087 26.3679 18.8826 25.2426 17.7574C24.1174 16.6321 22.5913 16 21 16Z"
+                      fill="#9F1F21"
+                    />
+                    <Path
+                      d="M22.59 25L20 22.41V18H22V21.59L24 23.59L22.59 25Z"
+                      fill="#9F1F21"
+                    />
+                    <Path
+                      d="M28 6C28 5.46957 27.7893 4.96086 27.4142 4.58579C27.0391 4.21071 26.5304 4 26 4H22V2H20V4H12V2H10V4H6C5.46957 4 4.96086 4.21071 4.58579 4.58579C4.21071 4.96086 4 5.46957 4 6V26C4 26.5304 4.21071 27.0391 4.58579 27.4142C4.96086 27.7893 5.46957 28 6 28H10V26H6V6H10V8H12V6H20V8H22V6H26V12H28V6Z"
+                      fill="#9F1F21"
+                    />
+                  </Svg>
+                ) : (
+                  <Svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M21 30C19.4178 30 17.871 29.5308 16.5554 28.6518C15.2398 27.7727 14.2145 26.5233 13.609 25.0615C13.0035 23.5997 12.845 21.9911 13.1537 20.4393C13.4624 18.8874 14.2243 17.462 15.3431 16.3431C16.462 15.2243 17.8874 14.4624 19.4393 14.1537C20.9911 13.845 22.5997 14.0035 24.0615 14.609C25.5233 15.2145 26.7727 16.2398 27.6518 17.5554C28.5308 18.871 29 20.4178 29 22C29 24.1217 28.1571 26.1566 26.6569 27.6569C25.1566 29.1571 23.1217 30 21 30ZM21 16C19.8133 16 18.6533 16.3519 17.6666 17.0112C16.6799 17.6705 15.9109 18.6075 15.4567 19.7039C15.0026 20.8003 14.8838 22.0067 15.1153 23.1705C15.3468 24.3344 15.9182 25.4035 16.7574 26.2426C17.5965 27.0818 18.6656 27.6532 19.8295 27.8847C20.9933 28.1162 22.1997 27.9974 23.2961 27.5433C24.3925 27.0892 25.3295 26.3201 25.9888 25.3334C26.6481 24.3467 27 23.1867 27 22C27 20.4087 26.3679 18.8826 25.2426 17.7574C24.1174 16.6321 22.5913 16 21 16Z"
+                      fill="black"
+                    />
+                    <Path
+                      d="M22.59 25L20 22.41V18H22V21.59L24 23.59L22.59 25Z"
+                      fill="black"
+                    />
+                    <Path
+                      d="M28 6C28 5.46957 27.7893 4.96086 27.4142 4.58579C27.0391 4.21071 26.5304 4 26 4H22V2H20V4H12V2H10V4H6C5.46957 4 4.96086 4.21071 4.58579 4.58579C4.21071 4.96086 4 5.46957 4 6V26C4 26.5304 4.21071 27.0391 4.58579 27.4142C4.96086 27.7893 5.46957 28 6 28H10V26H6V6H10V8H12V6H20V8H22V6H26V12H28V6Z"
+                      fill="black"
+                    />
+                  </Svg>
+                )
+              ) : (
+                <></>
+              )}
+              {index == 2 ? (
+                isFocused ? (
+                  <Svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M28.7001 20.3L26.0001 17.6V13C25.9969 10.5168 25.0763 8.12229 23.4151 6.27652C21.7539 4.43075 19.4693 3.26386 17.0001 3V1H15.0001V3C12.5378 3.2807 10.2632 4.45259 8.60531 6.29469C6.94742 8.13679 6.02077 10.5218 6.0001 13V17.6L3.3001 20.3C3.20249 20.3881 3.12514 20.4963 3.07335 20.6171C3.02156 20.7379 2.99657 20.8686 3.0001 21V24C2.99126 24.1336 3.01107 24.2676 3.05819 24.3929C3.10532 24.5182 3.17868 24.632 3.27337 24.7267C3.36805 24.8214 3.48187 24.8948 3.6072 24.9419C3.73253 24.989 3.86649 25.0088 4.0001 25H11.0001C11.0001 26.3261 11.5269 27.5979 12.4646 28.5355C13.4022 29.4732 14.674 30 16.0001 30C17.3262 30 18.5979 29.4732 19.5356 28.5355C20.4733 27.5979 21.0001 26.3261 21.0001 25H28.0001C28.1337 25.0088 28.2677 24.989 28.393 24.9419C28.5183 24.8948 28.6321 24.8214 28.7268 24.7267C28.8215 24.632 28.8949 24.5182 28.942 24.3929C28.9891 24.2676 29.0089 24.1336 29.0001 24V21C29.0036 20.8686 28.9786 20.7379 28.9268 20.6171C28.8751 20.4963 28.7977 20.3881 28.7001 20.3ZM16.0001 28C15.2044 28 14.4414 27.6839 13.8788 27.1213C13.3162 26.5587 13.0001 25.7956 13.0001 25H19.0001C19.0001 25.7956 18.684 26.5587 18.1214 27.1213C17.5588 27.6839 16.7957 28 16.0001 28ZM27.0001 23H5.0001V21.4L7.7001 18.7C7.7977 18.6119 7.87506 18.5037 7.92685 18.3829C7.97864 18.2621 8.00363 18.1314 8.0001 18V13C8.0001 10.8783 8.84295 8.84344 10.3432 7.34315C11.8435 5.84285 13.8784 5 16.0001 5C18.1218 5 20.1567 5.84285 21.657 7.34315C23.1572 8.84344 24.0001 10.8783 24.0001 13V18C23.9966 18.1314 24.0216 18.2621 24.0733 18.3829C24.1251 18.5037 24.2025 18.6119 24.3001 18.7L27.0001 21.4V23Z"
+                      fill="#A11A16"
+                    />
+                  </Svg>
+                ) : (
+                  <Svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M28.7001 20.3L26.0001 17.6V13C25.9969 10.5168 25.0763 8.12229 23.4151 6.27652C21.7539 4.43075 19.4693 3.26386 17.0001 3V1H15.0001V3C12.5378 3.2807 10.2632 4.45259 8.60531 6.29469C6.94742 8.13679 6.02077 10.5218 6.0001 13V17.6L3.3001 20.3C3.20249 20.3881 3.12514 20.4963 3.07335 20.6171C3.02156 20.7379 2.99657 20.8686 3.0001 21V24C2.99126 24.1336 3.01107 24.2676 3.05819 24.3929C3.10532 24.5182 3.17868 24.632 3.27337 24.7267C3.36805 24.8214 3.48187 24.8948 3.6072 24.9419C3.73253 24.989 3.86649 25.0088 4.0001 25H11.0001C11.0001 26.3261 11.5269 27.5979 12.4646 28.5355C13.4022 29.4732 14.674 30 16.0001 30C17.3262 30 18.5979 29.4732 19.5356 28.5355C20.4733 27.5979 21.0001 26.3261 21.0001 25H28.0001C28.1337 25.0088 28.2677 24.989 28.393 24.9419C28.5183 24.8948 28.6321 24.8214 28.7268 24.7267C28.8215 24.632 28.8949 24.5182 28.942 24.3929C28.9891 24.2676 29.0089 24.1336 29.0001 24V21C29.0036 20.8686 28.9786 20.7379 28.9268 20.6171C28.8751 20.4963 28.7977 20.3881 28.7001 20.3ZM16.0001 28C15.2044 28 14.4414 27.6839 13.8788 27.1213C13.3162 26.5587 13.0001 25.7956 13.0001 25H19.0001C19.0001 25.7956 18.684 26.5587 18.1214 27.1213C17.5588 27.6839 16.7957 28 16.0001 28ZM27.0001 23H5.0001V21.4L7.7001 18.7C7.7977 18.6119 7.87506 18.5037 7.92685 18.3829C7.97864 18.2621 8.00363 18.1314 8.0001 18V13C8.0001 10.8783 8.84295 8.84344 10.3432 7.34315C11.8435 5.84285 13.8784 5 16.0001 5C18.1218 5 20.1567 5.84285 21.657 7.34315C23.1572 8.84344 24.0001 10.8783 24.0001 13V18C23.9966 18.1314 24.0216 18.2621 24.0733 18.3829C24.1251 18.5037 24.2025 18.6119 24.3001 18.7L27.0001 21.4V23Z"
+                      fill="black"
+                    />
+                  </Svg>
+                )
+              ) : (
+                <></>
+              )}
+              {index == 3 ? (
+                isFocused ? (
+                  <Svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M26 30H24V27C23.9984 25.6744 23.4712 24.4035 22.5338 23.4662C21.5965 22.5288 20.3256 22.0016 19 22H13C11.6744 22.0016 10.4035 22.5288 9.46619 23.4662C8.52885 24.4035 8.00156 25.6744 8 27V30H6V27C6.00217 25.1442 6.74037 23.3649 8.05265 22.0526C9.36493 20.7404 11.1442 20.0022 13 20H19C20.8558 20.0022 22.6351 20.7404 23.9474 22.0526C25.2596 23.3649 25.9978 25.1442 26 27V30Z"
+                      fill="#A11A16"
+                    />
+                    <Path
+                      d="M5 6C4.73478 6 4.48043 6.10536 4.29289 6.29289C4.10536 6.48043 4 6.73478 4 7V16H6V7C6 6.73478 5.89464 6.48043 5.70711 6.29289C5.51957 6.10536 5.26522 6 5 6Z"
+                      fill="#A11A16"
+                    />
+                    <Path
+                      d="M4 2V4H9V11C9 12.8565 9.7375 14.637 11.0503 15.9497C12.363 17.2625 14.1435 18 16 18C17.8565 18 19.637 17.2625 20.9497 15.9497C22.2625 14.637 23 12.8565 23 11V4H28V2H4ZM11 4H21V7H11V4ZM16 16C14.6739 16 13.4021 15.4732 12.4645 14.5355C11.5268 13.5979 11 12.3261 11 11V9H21V11C21 12.3261 20.4732 13.5979 19.5355 14.5355C18.5979 15.4732 17.3261 16 16 16Z"
+                      fill="#A11A16"
+                    />
+                  </Svg>
+                ) : (
+                  <Svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M26 30H24V27C23.9984 25.6744 23.4712 24.4035 22.5338 23.4662C21.5965 22.5288 20.3256 22.0016 19 22H13C11.6744 22.0016 10.4035 22.5288 9.46619 23.4662C8.52885 24.4035 8.00156 25.6744 8 27V30H6V27C6.00217 25.1442 6.74037 23.3649 8.05265 22.0526C9.36493 20.7404 11.1442 20.0022 13 20H19C20.8558 20.0022 22.6351 20.7404 23.9474 22.0526C25.2596 23.3649 25.9978 25.1442 26 27V30Z"
+                      fill="black"
+                    />
+                    <Path
+                      d="M5 6C4.73478 6 4.48043 6.10536 4.29289 6.29289C4.10536 6.48043 4 6.73478 4 7V16H6V7C6 6.73478 5.89464 6.48043 5.70711 6.29289C5.51957 6.10536 5.26522 6 5 6Z"
+                      fill="black"
+                    />
+                    <Path
+                      d="M4 2V4H9V11C9 12.8565 9.7375 14.637 11.0503 15.9497C12.363 17.2625 14.1435 18 16 18C17.8565 18 19.637 17.2625 20.9497 15.9497C22.2625 14.637 23 12.8565 23 11V4H28V2H4ZM11 4H21V7H11V4ZM16 16C14.6739 16 13.4021 15.4732 12.4645 14.5355C11.5268 13.5979 11 12.3261 11 11V9H21V11C21 12.3261 20.4732 13.5979 19.5355 14.5355C18.5979 15.4732 17.3261 16 16 16Z"
+                      fill="black"
+                    />
+                  </Svg>
+                )
+              ) : (
+                <></>
+              )}
+              {index == 4 ? (
+                isFocused ? (
+                  <Svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M16 2C13.2311 2 10.5243 2.82109 8.22202 4.35943C5.91973 5.89777 4.12531 8.08427 3.06569 10.6424C2.00606 13.2006 1.72881 16.0155 2.26901 18.7313C2.8092 21.447 4.14257 23.9416 6.10051 25.8995C8.05844 27.8574 10.553 29.1908 13.2687 29.731C15.9845 30.2712 18.7994 29.9939 21.3576 28.9343C23.9157 27.8747 26.1022 26.0803 27.6406 23.778C29.1789 21.4757 30 18.7689 30 16C30 12.287 28.525 8.72601 25.8995 6.1005C23.274 3.475 19.713 2 16 2ZM10 26.38V24.38C9.95609 23.5355 10.2461 22.7077 10.8074 22.0753C11.3687 21.4429 12.1563 21.0566 13 21H19C19.8455 21.0566 20.6346 21.4443 21.1962 22.0789C21.7578 22.7135 22.0466 23.5439 22 24.39V26.39C20.1785 27.4511 18.1081 28.0102 16 28.0102C13.8919 28.0102 11.8215 27.4511 10 26.39V26.38ZM24 24.92V24.31C24.0273 22.9466 23.5189 21.6269 22.5841 20.6342C21.6493 19.6414 20.3625 19.0547 19 19H13C11.6366 19.0522 10.3483 19.6381 9.41295 20.6314C8.4776 21.6248 7.97014 22.9459 8 24.31V24.9C6.18856 23.2798 4.91176 21.1478 4.33855 18.786C3.76534 16.4243 3.92275 13.9442 4.78993 11.6739C5.65712 9.40354 7.19321 7.45004 9.19494 6.07184C11.1967 4.69365 13.5697 3.95573 16 3.95573C18.4303 3.95573 20.8033 4.69365 22.8051 6.07184C24.8068 7.45004 26.3429 9.40354 27.2101 11.6739C28.0773 13.9442 28.2347 16.4243 27.6614 18.786C27.0882 21.1478 25.8114 23.2798 24 24.9V24.92Z"
+                      fill="#A11A16"
+                    />
+                    <Path
+                      d="M16 7C15.0111 7 14.0444 7.29324 13.2221 7.84265C12.3999 8.39206 11.759 9.17295 11.3806 10.0866C11.0022 11.0002 10.9031 12.0055 11.0961 12.9755C11.289 13.9454 11.7652 14.8363 12.4645 15.5355C13.1637 16.2348 14.0546 16.711 15.0245 16.9039C15.9945 17.0969 16.9998 16.9978 17.9134 16.6194C18.827 16.241 19.6079 15.6001 20.1573 14.7779C20.7068 13.9556 21 12.9889 21 12C21 10.6739 20.4732 9.40215 19.5355 8.46447C18.5979 7.52678 17.3261 7 16 7ZM16 15C15.4067 15 14.8266 14.8241 14.3333 14.4944C13.8399 14.1648 13.4554 13.6962 13.2284 13.1481C13.0013 12.5999 12.9419 11.9967 13.0576 11.4147C13.1734 10.8328 13.4591 10.2982 13.8787 9.87868C14.2982 9.45912 14.8328 9.1734 15.4147 9.05764C15.9967 8.94189 16.5999 9.0013 17.148 9.22836C17.6962 9.45542 18.1648 9.83994 18.4944 10.3333C18.8241 10.8266 19 11.4067 19 12C19 12.7956 18.6839 13.5587 18.1213 14.1213C17.5587 14.6839 16.7956 15 16 15Z"
+                      fill="#A11A16"
+                    />
+                  </Svg>
+                ) : (
+                  <Svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <Path
+                      d="M16 2C13.2311 2 10.5243 2.82109 8.22202 4.35943C5.91973 5.89777 4.12532 8.08427 3.06569 10.6424C2.00607 13.2006 1.72882 16.0155 2.26901 18.7313C2.80921 21.447 4.14258 23.9416 6.10051 25.8995C8.05845 27.8574 10.553 29.1908 13.2687 29.731C15.9845 30.2712 18.7994 29.9939 21.3576 28.9343C23.9157 27.8747 26.1022 26.0803 27.6406 23.778C29.1789 21.4757 30 18.7689 30 16C30 12.287 28.525 8.72601 25.8995 6.1005C23.274 3.475 19.713 2 16 2ZM10 26.38V24.38C9.95609 23.5355 10.2461 22.7077 10.8074 22.0753C11.3687 21.4429 12.1563 21.0566 13 21H19C19.8455 21.0566 20.6347 21.4443 21.1962 22.0789C21.7578 22.7135 22.0466 23.5439 22 24.39V26.39C20.1785 27.4511 18.1081 28.0102 16 28.0102C13.8919 28.0102 11.8216 27.4511 10 26.39V26.38ZM24 24.92V24.31C24.0273 22.9466 23.5189 21.6269 22.5841 20.6342C21.6493 19.6414 20.3625 19.0547 19 19H13C11.6366 19.0522 10.3483 19.6381 9.41296 20.6314C8.47761 21.6248 7.97015 22.9459 8.00001 24.31V24.9C6.18857 23.2798 4.91177 21.1478 4.33856 18.786C3.76535 16.4243 3.92275 13.9442 4.78994 11.6739C5.65712 9.40354 7.19321 7.45004 9.19495 6.07184C11.1967 4.69365 13.5697 3.95573 16 3.95573C18.4303 3.95573 20.8033 4.69365 22.8051 6.07184C24.8068 7.45004 26.3429 9.40354 27.2101 11.6739C28.0773 13.9442 28.2347 16.4243 27.6615 18.786C27.0882 21.1478 25.8114 23.2798 24 24.9V24.92Z"
+                      fill="black"
+                    />
+                    <Path
+                      d="M16 7C15.0111 7 14.0444 7.29324 13.2222 7.84265C12.3999 8.39206 11.759 9.17295 11.3806 10.0866C11.0022 11.0002 10.9031 12.0055 11.0961 12.9755C11.289 13.9454 11.7652 14.8363 12.4645 15.5355C13.1637 16.2348 14.0546 16.711 15.0246 16.9039C15.9945 17.0969 16.9998 16.9978 17.9134 16.6194C18.8271 16.241 19.6079 15.6001 20.1574 14.7779C20.7068 13.9556 21 12.9889 21 12C21 10.6739 20.4732 9.40215 19.5355 8.46447C18.5979 7.52678 17.3261 7 16 7ZM16 15C15.4067 15 14.8266 14.8241 14.3333 14.4944C13.8399 14.1648 13.4554 13.6962 13.2284 13.1481C13.0013 12.5999 12.9419 11.9967 13.0576 11.4147C13.1734 10.8328 13.4591 10.2982 13.8787 9.87868C14.2982 9.45912 14.8328 9.1734 15.4147 9.05764C15.9967 8.94189 16.5999 9.0013 17.1481 9.22836C17.6962 9.45542 18.1648 9.83994 18.4944 10.3333C18.8241 10.8266 19 11.4067 19 12C19 12.7956 18.6839 13.5587 18.1213 14.1213C17.5587 14.6839 16.7957 15 16 15Z"
+                      fill="black"
+                    />
+                  </Svg>
+                )
+              ) : (
+                <></>
+              )}
+
+              {/* {index == 0 ?
                                 <HomeIcon width={28} height={28} /> :
                                 <></>}
                             {index == 1 ?
@@ -123,65 +300,34 @@ const SideBar = () => {
                                 isFocused ?
                                     <ProfileCheckedIcon width={28} height={28} /> :
                                     <ProfileIcon width={28} height={28} /> : <></>} */}
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    );
+  };
 
-                        </TouchableOpacity>
-                    );
-                })}
-            </View>
-        );
-    }
-
-    return (
-        <Tab.Navigator
-            initialRouteName="News"
-            tabBar={props => <CustomBar {...props} />}
-        >
-            <Tab.Screen
-                name="News"
-                children={() => <News />}
-            />
-            <Tab.Screen
-                name="Schedule"
-                children={() => <Schedule />}
-            />
-            <Tab.Screen
-                name="Notifications"
-                children={() => <Notifications />}
-            />
-            <Tab.Screen
-                name="StudentBook"
-                children={() => <StudentBook />}
-            />
-            <Tab.Screen
-                name="Profile"
-                children={() => <Profile />}
-            />
-            <Tab.Screen
-                name="Application"
-                children={() => <Application />}
-            />
-            <Tab.Screen
-                name="FreeDiscipline"
-                children={() => <FreeDiscipline />}
-            />
-            <Tab.Screen
-                name="Map"
-                children={() => <Map />}
-            />
-            <Tab.Screen
-                name="DetailDvv"
-                children={() => <DetailDvv />}
-            />
-            <Tab.Screen
-                name="ApplicationDetail"
-                children={() => <ApplicationDetail />}
-            />
-            <Tab.Screen
-                name="NewsDetail"
-                children={() => <NewsDetail />}
-            />
-        </Tab.Navigator>
-    )
-}
+  return (
+    <Tab.Navigator
+      initialRouteName="News"
+      tabBar={(props) => <CustomBar {...props} />}
+    >
+      <Tab.Screen name="News" children={() => <News />} />
+      <Tab.Screen name="Schedule" children={() => <Schedule />} />
+      <Tab.Screen name="Notifications" children={() => <Notifications />} />
+      <Tab.Screen name="StudentBook" children={() => <StudentBook />} />
+      <Tab.Screen name="Profile" children={() => <Profile />} />
+      <Tab.Screen name="Application" children={() => <Application />} />
+      <Tab.Screen name="FreeDiscipline" children={() => <FreeDiscipline />} />
+      <Tab.Screen name="Map" children={() => <Map />} />
+      <Tab.Screen name="DetailDvv" children={() => <DetailDvv />} />
+      <Tab.Screen
+        name="ApplicationDetail"
+        children={() => <ApplicationDetail />}
+      />
+      <Tab.Screen name="NewsDetail" children={() => <NewsDetail />} />
+    </Tab.Navigator>
+  );
+};
 
 export default SideBar;
